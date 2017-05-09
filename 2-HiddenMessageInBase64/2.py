@@ -43,13 +43,15 @@ enc_array = encrypted.split(' ')
 base64dict = dict(sorted(get_base64_dict().items(), key=operator.itemgetter(1)))
 
 #     A
-# 010000|01||0110||000000|000000 
-#    16    22     0     0     
-#    Q     W      =     =
+# 010000|01||>>0110<< those bits||000000|000000 
+#    16    22                       0     0     
+#    Q     W                        =     =
 
-# 010000|01||0011||000000|000000
-#   16     19     0     0
-#   Q       T     =     =
+# 010000|01||>>0011<< those bits||000000|000000
+#   16     19                       0     0
+#   Q       T                       =     =
+
+# Message hidden in bits ignored during decoding 
 
 chars_with_ignored_bytes = ''
 result = []
@@ -63,4 +65,4 @@ for i in xrange(0, len(chars_with_ignored_bytes), 2):
 
 print("The message is: " + ''.join([chr(int(result[i], 2)) for i in range(0, len(result))]))
 
-
+# Result: c0MMun1C4t10n
